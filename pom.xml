@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.xxgen.lvac</groupId>
+	<artifactId>lvac-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>lvac-core</module>
+		<module>lvac-utils</module>
+		<module>lvac-domain</module>
+		<module>lvac-web</module>
+	</modules>
+	
+	<properties>  
+	    <junit.version>4.12</junit.version>
+		<jdk.compiler.version>1.8</jdk.compiler.version>  
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- 项目自身各模块相关依赖 -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<defaultGoal>compile</defaultGoal>
+		
+		<!-- 声明框架没提供，项目自己需要管理的插件 -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<compilerArgument>-parameters</compilerArgument>
+						<source>${jdk.compiler.version}</source>
+						<target>${jdk.compiler.version}</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
