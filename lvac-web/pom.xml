@@ -19,12 +19,17 @@
 			<artifactId>lvac-domain</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.xxgen.lvac</groupId>
+			<artifactId>lvac-utils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
