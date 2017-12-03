@@ -6,6 +6,8 @@
 	<artifactId>lvac-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<description>The Secret Lvac project by xxGen</description>
+	<url>www.xxGen.cc</url>
 	<modules>
 		<module>lvac-core</module>
 		<module>lvac-utils</module>
@@ -14,13 +16,12 @@
 	</modules>
 	
 	<properties>  
+		<jdk.compiler.version>1.8</jdk.compiler.version>
 	    <junit.version>4.12</junit.version>
-		<jdk.compiler.version>1.8</jdk.compiler.version>  
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- 项目自身各模块相关依赖 -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>

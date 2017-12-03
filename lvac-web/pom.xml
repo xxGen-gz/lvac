@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>lvac-web</artifactId>
 	<packaging>war</packaging>
-	<name>lvac-web Maven Webapp</name>
+	<name>lvac-web</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<!-- 本项目中其他子模块依赖 -->
