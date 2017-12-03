@@ -15,6 +15,39 @@
 		<module>lvac-web</module>
 	</modules>
 	
+	<repositories>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>yanjiuyan</id>
+			<url>http://10.95.18.16:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>maven</id>
+			<name>maven Repository</name>
+			<layout>default</layout>
+			<url>http://repo2.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
 	<properties>  
 		<jdk.compiler.version>1.8</jdk.compiler.version>
 	    <junit.version>4.12</junit.version>
@@ -22,12 +55,406 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- ###################################### dependencies referenced by csair begins ###################################### -->
+			
+			<!-- ====================================== diamond-framework-domain dependencies begin ====================================== -->
+			
+			<!-- diamond-framework-domain -->
+			<!-- diamond项目web应用框架：领域模型公共定义 -->
+			
+			<!-- diamond-framework-domain => diamond-support-domain-spi -->
+			<!-- 提供公共领域模型服务提供接口的基础实现 -->
+			
+			<!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-logging-logback -->
+			<!-- 提供slf4j原生logback-classic支持，以及与commons-logging、log4j的桥接实现 -->
+	        <dependency>
+	            <groupId>ch.qos.logback</groupId>
+	            <artifactId>logback-classic</artifactId>
+	            <scope>compile</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>log4j-over-slf4j</artifactId>
+	            <scope>runtime</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>jcl-over-slf4j</artifactId>
+	            <scope>runtime</scope>
+	        </dependency>
+			
+			<!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-domain-dto -->
+			<!-- 提供公共领域模型值对象的基础实现 -->
+			
+			<!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-domain-dto => diamond-support-logging-logback（已存在依赖） -->
+			
+			<!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-domain-dto => diamond-support-binding-jackson -->
+			<!-- 提供数据绑定、序列化实现：用jackson在对象与JSON之间映射 -->
+			<dependency>
+	            <groupId>com.fasterxml.jackson.core</groupId>
+	            <artifactId>jackson-databind</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>com.fasterxml.jackson.core</groupId>
+	            <artifactId>jackson-annotations</artifactId>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>com.fasterxml.jackson.module</groupId>
+	            <artifactId>jackson-module-jaxb-annotations</artifactId>
+	        </dependency>
+	        
+	        <!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-domain-dto => diamond-commons-lang -->
+	        <!-- 增强或规范Java语言会用经常使用到的静态工具、注解 -->
+	        <!-- commons-*这几个语言增强可以说是JDK不可货缺的补充 -->
+	        <!-- 当然也推荐guava和jodd这些实用的语言工具和微框架 -->
+	        <dependency>
+	            <groupId>commons-lang</groupId>
+	            <artifactId>commons-lang</artifactId>
+	        </dependency>
+	        <!-- 本模块暂时还没直接依赖到
+	            <dependency>
+	            <groupId>commons-beanutils</groupId>
+	            <artifactId>commons-beanutils</artifactId>
+	            </dependency>
+	        -->
+	        <dependency>
+	            <groupId>commons-collections</groupId>
+	            <artifactId>commons-collections</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>commons-io</groupId>
+	            <artifactId>commons-io</artifactId>
+	        </dependency>
+	        <!-- joda-time API已经在Java 8合并进了OpenJDK，我们版本7需要自行引入 -->
+	        <!-- 作为JDK Date/Time API的重要补充，在升级到8之前先了解并使用绝对没有坏处 -->
+	        <dependency>
+	            <groupId>joda-time</groupId>
+	            <artifactId>joda-time</artifactId>
+	        </dependency>
+	
+	        <dependency>
+	            <groupId>ch.qos.logback</groupId>
+	            <artifactId>logback-classic</artifactId>
+	            <scope>test</scope>
+	        </dependency>
+	        
+	        
+	        <dependency>
+	            <groupId>javax.validation</groupId>
+	            <artifactId>validation-api</artifactId>
+	        </dependency>
+			
+			<!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-domain-dto => diamond-support-test-junit -->
+			<!-- 提供写单元测试时会用到的一些JUnit常用支持 -->
+			
+			<!-- junit（已存在依赖） -->
+	        <!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-domain-dto => diamond-support-test-junit => diamond-commons-lang（已存在依赖） -->
+	        
+	        <!-- ====================================== diamond-framework-domain dependencies end ====================================== -->
+	        
+	        
+	        <!-- ====================================== diamond-framework-core-biz dependencies begin ====================================== -->
+	        
+	        <!-- diamond-framework-core-biz -->
+	        <!-- diamond项目应用框架内层核心：业务服务支撑 -->
+	        
+	        <!-- diamond-framework-core-biz => diamond-support-service-dubbo -->
+	        <!-- 用dubbo提供核心业务服务的科学治理实现 -->
+	        
+	        <!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-logging-logback（已存在依赖） -->
+	        
+	        <!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-integration-spring -->
+	        <!-- 提供反转控制依赖注入和面向切面的配置容器：spring实现。以及和spring框架密切整合的支持 -->
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-context</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.aspectj</groupId>
+	            <artifactId>aspectjweaver</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>javax.inject</groupId>
+	            <artifactId>javax.inject</artifactId>
+	        </dependency>
+	
+	        <dependency>
+	            <groupId>org.jasypt</groupId>
+	            <artifactId>jasypt-spring3</artifactId>
+	        </dependency>
+	
+			<!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-integration-spring => diamond-commons-lang（已存在依赖） -->
+	        
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-test</artifactId>
+	        </dependency>
+	        
+			<!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-integration-spring => diamond-support-test-junit（已存在依赖） -->
+			
+			<!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-domain-spi（已存在依赖） -->
+			
+			<!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-dao-spi -->
+			<!-- 提供核心服务中的数据访问API抽象基类实现的支持 -->
+			
+			<!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-dao-spi => diamond-support-domain-spi（已存在依赖） -->
+			<!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-dao-spi => diamond-support-logging-logback（已存在依赖） -->
+			
+	        <dependency>
+	            <groupId>com.alibaba</groupId>
+	            <artifactId>dubbo</artifactId>
+	        </dependency>
+	
+	        <!-- 默认用zookeeper作为注册中心时的客户端依赖 -->
+	        <!-- 为了体现我们框架推荐默认使用zookeeper，免去用户必需添加额外依赖，这里不使用provided -->
+	        <dependency>
+	            <groupId>org.apache.curator</groupId>
+	            <artifactId>curator-framework</artifactId>
+	            <scope>runtime</scope>
+	        </dependency>
+	        <!-- 另外几种可选注册中心所需依赖支持 -->
+	        <dependency>
+	            <groupId>com.github.sgroschupf</groupId>
+	            <artifactId>zkclient</artifactId>
+	            <scope>provided</scope>
+	            <optional>true</optional>
+	        </dependency>
+	        <dependency>
+	            <groupId>redis.clients</groupId>
+	            <artifactId>jedis</artifactId>
+	            <scope>provided</scope>
+	            <optional>true</optional>
+	        </dependency>
+	        
+			<!-- diamond-framework-core-biz => diamond-support-aop-exception -->
+			<!-- 利用AOP技术非侵入式辅助框架用户处理来自DAO、Business、Service这些层抛出的异常 -->
+			
+			<!-- diamond-framework-core-biz => diamond-support-aop-exception => diamond-support-integration-spring（已存在依赖） -->
+			
+			<dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-aop</artifactId>
+	            <scope>compile</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.aspectj</groupId>
+	            <artifactId>aspectjweaver</artifactId>
+	            <scope>compile</scope>
+	        </dependency>
+	        
+			<!-- diamond-framework-core-biz => diamond-support-aop-exception => diamond-support-exception-spi -->
+			<!-- 框架定义的异常体系和异常处理的规范基类 -->
+			
+			<!-- diamond-framework-core-biz => diamond-support-aop-exception => diamond-support-exception-spi => diamond-commons-lang（已存在依赖） -->
+			
+			<!-- diamond-framework-core-biz => diamond-support-aop-exception => diamond-support-domain-spi（已存在依赖） -->
+			
+			<!-- diamond-framework-core-biz => diamond-support-aop-exception => diamond-support-dao-spi（已存在依赖） -->
+			
+	        <!-- ====================================== diamond-framework-core-biz dependencies end ====================================== -->
+	        
+	        
+	        <!-- ====================================== diamond-framework-core-dao-api dependencies begin ====================================== -->
+	        
+	        <!-- diamond-framework-core-dao-api -->
+	        <!-- diamond项目应用框架内层核心：数据访问操作接口层 -->
+	        
+	        <!-- diamond-framework-core-dao-api => diamond-support-dao-spi（已存在依赖） -->
+	        
+	        <!-- ====================================== diamond-framework-core-dao-api dependencies end ====================================== -->
+	        
+	        
+	        <!-- ====================================== diamond-framework-core-dao-impl dependencies begin ====================================== -->
+	        
+	        <!-- diamond-framework-core-dao-impl -->
+	        <!-- diamond项目应用框架内层核心：数据访问操作实现层 -->
+	        
+	        <!-- diamond-framework-core-dao-impl => diamond-support-data-mybatis -->
+	        <!-- 提供核心服务中的用MyBatis实现数据持久化的抽象基类实现的支持 -->
+	        
+	        <!-- diamond-framework-core-dao-impl => diamond-support-data-mybatis => diamond-support-logging-logback（已存在依赖） -->
+	        <!-- diamond-framework-core-dao-impl => diamond-support-data-mybatis => diamond-support-dao-spi（已存在依赖） -->
+	        <!-- diamond-framework-core-dao-impl => diamond-support-data-mybatis => diamond-support-integration-spring（已存在依赖） -->
+	        
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-jdbc</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.springframework.data</groupId>
+	            <artifactId>spring-data-jpa</artifactId>
+	        </dependency>
+	
+	        <dependency>
+	            <groupId>org.hibernate</groupId>
+	            <artifactId>hibernate-validator</artifactId>
+	        </dependency>
+	
+	        <dependency>
+	            <groupId>org.owasp.esapi</groupId>
+	            <artifactId>esapi</artifactId>
+	            <exclusions>
+	                <!-- 目前只用到了Encoder，下面这些支持暂未用到 -->
+	                <exclusion>
+	                    <groupId>org.owasp.antisamy</groupId>
+	                    <artifactId>antisamy</artifactId>
+	                </exclusion>
+	                <exclusion>
+	                    <groupId>xom</groupId>
+	                    <artifactId>xom</artifactId>
+	                </exclusion>
+	                <exclusion>
+	                    <groupId>commons-configuration</groupId>
+	                    <artifactId>commons-configuration</artifactId>
+	                </exclusion>
+	                <exclusion>
+	                    <groupId>org.beanshell</groupId>
+	                    <artifactId>bsh-core</artifactId>
+	                </exclusion>
+	                <exclusion>
+	                    <groupId>commons-fileupload</groupId>
+	                    <artifactId>commons-fileupload</artifactId>
+	                </exclusion>
+	                <exclusion>
+	                    <groupId>commons-beanutils</groupId>
+	                    <artifactId>commons-beanutils-core</artifactId>
+	                </exclusion>
+	            </exclusions>
+	        </dependency>
+	
+	        <dependency>
+	            <groupId>org.mybatis</groupId>
+	            <artifactId>mybatis</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.mybatis</groupId>
+	            <artifactId>mybatis-spring</artifactId>
+	        </dependency>
+	
+	        <dependency>
+	            <groupId>commons-dbcp</groupId>
+	            <artifactId>commons-dbcp</artifactId>
+	        </dependency>
+	        
+	        <!-- ====================================== diamond-framework-core-dao-impl dependencies end ====================================== -->
+			
+			
+	        <!-- ====================================== diamond-framework-shell-web dependencies begin ====================================== -->
+	        
+	        <!-- diamond-framework-shell-web -->
+	        <!-- diamond项目应用框架外层：Web形式表示 -->
+	        
+	        <!-- diamond-framework-shell-web => diamond-support-web-springmvc -->
+	        <!-- 用SpringMVC提供外层Web展现的基本支持，提供方便编码的各种抽象基类实现 -->
+	        
+	        <!-- diamond-framework-shell-web => diamond-support-web-springmvc => diamond-support-logging-logback（已存在依赖） -->
+	        <!-- diamond-framework-shell-web => diamond-support-web-springmvc => diamond-support-integration-spring（已存在依赖） -->
+	        
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-webmvc</artifactId>
+	        </dependency>
+	        
+	        <!-- diamond-framework-shell-web => diamond-support-web-springmvc => diamond-support-domain-spi（已存在依赖） -->
+	        
+			<!-- hibernate-validator（已存在依赖） -->
+			
+			<!-- 以下依赖版本
+				<servlet.version>2.5</servlet.version>
+		        <jsp.version>2.1</jsp.version>
+		        <jstl.version>1.2</jstl.version>
+		        <taglibs-standard.version>1.1.2</taglibs-standard.version> 
+	        -->
+			<dependency>
+	            <groupId>javax.servlet</groupId>
+	            <artifactId>servlet-api</artifactId>
+	            <scope>provided</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>javax.servlet.jsp</groupId>
+	            <artifactId>jsp-api</artifactId>
+	            <scope>provided</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>taglibs</groupId>
+	            <artifactId>standard</artifactId>
+	            <scope>provided</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>javax.servlet</groupId>
+	            <artifactId>jstl</artifactId>
+	            <scope>provided</scope>
+	        </dependency>
+	        
+	        <!-- diamond-framework-shell-web => diamond-support-service-dubbo（已存在依赖） -->
+	        
+	        
+	        <!-- diamond-framework-shell-web => diamond-support-auth-shiro -->
+	        <!-- 用Apache Shiro提供Web应用认证和授权控制的支持 -->
+	        
+	        <!-- diamond-framework-shell-web => diamond-support-auth-shiro => diamond-support-logging-logback（已存在依赖） -->
+	        <!-- diamond-framework-shell-web => diamond-support-auth-shiro => diamond-support-integration-spring（已存在依赖） -->
+	        
+	        <dependency>
+	            <groupId>org.apache.shiro</groupId>
+	            <artifactId>shiro-spring</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.shiro</groupId>
+	            <artifactId>shiro-ehcache</artifactId>
+	        </dependency>
+	        <dependency>
+	            <groupId>commons-codec</groupId>
+	            <artifactId>commons-codec</artifactId>
+	        </dependency>
+	        
+	        <!-- ====================================== diamond-framework-shell-web dependencies end ====================================== -->
+	        
+	        
+	        <!-- ====================================== diamond-support-exception-spi dependencies begin ====================================== -->
+	        
+	        <!-- diamond-support-exception-spi（已存在依赖） -->
+	        
+	        <!-- ====================================== diamond-support-exception-spi dependencies end ====================================== -->
+	        
+	        
+	        <!-- ====================================== diamond-support dependencies begin ====================================== -->
+	        
+	        <!-- diamond项目框架各种开源组件整合支持 -->
+	        
+	        <!-- diamond-support => diamond-commons-lang（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-exception-spi（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-domain-spi（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-domain-dto（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-dao-spi（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-logging-logback（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-binding-jackson（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-integration-spring（已存在依赖） -->
+	        <!-- diamond-support => diamond-support-test-junit（已存在依赖） -->
+	        
+	        <!-- ====================================== diamond-support dependencies end ====================================== -->
+	        
+	        
+	        <!-- ====================================== diamond-support-aop-exception dependencies begin ====================================== -->
+	        
+	        <!-- diamond-support-aop-exception（已存在依赖） -->
+	        
+	        <!-- ====================================== diamond-support-aop-exception dependencies end ====================================== -->
+	        
+			<!-- ###################################### dependencies referenced by csair ends ###################################### -->
+			
+			
+			
+			
+			
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 
@@ -37,6 +464,38 @@
 		<!-- 声明框架没提供，项目自己需要管理的插件 -->
 		<pluginManagement>
 			<plugins>
+				<!-- ###################################### plugins referenced by csair begins ###################################### -->
+				
+	        	<!-- diamond-framework-domain => diamond-support-domain-spi => diamond-support-domain-dto => diamond-commons-lang -->
+				<plugin>
+	                <artifactId>maven-surefire-plugin</artifactId>
+	                <configuration>
+	                    <skipTests>false</skipTests>
+	                </configuration>
+	            </plugin>
+	            
+	        	<!-- diamond-support -->
+	            <!-- 框架源码开放，决定！有了源码，在IDE下可以方便地看到javadoc。 -->
+	            <plugin>
+	                <artifactId>maven-source-plugin</artifactId>
+	            </plugin>
+	            <!-- 于是暂时不打包生成单独javadoc，还因为会导致整体构建速度颇慢。 -->
+	            <!--
+	                <plugin>
+	                <artifactId>maven-javadoc-plugin</artifactId>
+	                </plugin>
+	            -->
+	            <plugin>
+	                <groupId>org.codehaus.mojo</groupId>
+	                <artifactId>buildnumber-maven-plugin</artifactId>
+	            </plugin>
+	            
+				<!-- ###################################### plugins referenced by csair end ###################################### -->
+				
+				
+			
+
+			
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
