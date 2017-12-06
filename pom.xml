@@ -6,7 +6,7 @@
 	<artifactId>lvac-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<description>The Secret Lvac project by xxGen</description>
+	<description>The Secret Lvac Project by xxGen</description>
 	<url>www.xxGen.cc</url>
 	<modules>
 		<module>lvac-core</module>
