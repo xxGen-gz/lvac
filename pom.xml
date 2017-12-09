@@ -51,6 +51,7 @@
 	<properties>  
 		<jdk.compiler.version>1.8</jdk.compiler.version>
 	    <junit.version>4.12</junit.version>
+	    <spring.framework.version>4.3.10.RELEASE</spring.framework.version>
 	</properties>
 
 	<dependencyManagement>
@@ -169,6 +170,7 @@
 	        <dependency>
 	            <groupId>org.springframework</groupId>
 	            <artifactId>spring-context</artifactId>
+	            <version>${spring.framework.version}</version>
 	        </dependency>
 	        <dependency>
 	            <groupId>org.aspectj</groupId>
@@ -189,6 +191,7 @@
 	        <dependency>
 	            <groupId>org.springframework</groupId>
 	            <artifactId>spring-test</artifactId>
+	            <version>${spring.framework.version}</version>
 	        </dependency>
 	        
 			<!-- diamond-framework-core-biz => diamond-support-service-dubbo => diamond-support-integration-spring => diamond-support-test-junit（已存在依赖） -->
@@ -235,6 +238,7 @@
 			<dependency>
 	            <groupId>org.springframework</groupId>
 	            <artifactId>spring-aop</artifactId>
+	            <version>${spring.framework.version}</version>
 	            <scope>compile</scope>
 	        </dependency>
 	        <dependency>
@@ -280,10 +284,12 @@
 	        <dependency>
 	            <groupId>org.springframework</groupId>
 	            <artifactId>spring-jdbc</artifactId>
+	            <version>${spring.framework.version}</version>
 	        </dependency>
 	        <dependency>
 	            <groupId>org.springframework.data</groupId>
 	            <artifactId>spring-data-jpa</artifactId>
+	            <version>${spring.framework.version}</version>
 	        </dependency>
 	
 	        <dependency>
@@ -330,11 +336,13 @@
 	        <dependency>
 	            <groupId>org.mybatis</groupId>
 	            <artifactId>mybatis-spring</artifactId>
+	            <version>1.3.0</version>
 	        </dependency>
 	
 	        <dependency>
 	            <groupId>commons-dbcp</groupId>
 	            <artifactId>commons-dbcp</artifactId>
+	            <version>1.4</version>
 	        </dependency>
 	        
 	        <!-- ====================================== diamond-framework-core-dao-impl dependencies end ====================================== -->
@@ -354,6 +362,7 @@
 	        <dependency>
 	            <groupId>org.springframework</groupId>
 	            <artifactId>spring-webmvc</artifactId>
+	            <version>${spring.framework.version}</version>
 	        </dependency>
 	        
 	        <!-- diamond-framework-shell-web => diamond-support-web-springmvc => diamond-support-domain-spi（已存在依赖） -->
@@ -446,13 +455,63 @@
 			
 			
 			
-			
+		    <dependency>
+		    	<groupId>org.springframework</groupId>
+		        <artifactId>spring-core</artifactId>
+		        <version>${spring.framework.version}</version>
+		    </dependency>
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-tx</artifactId>
+	            <version>${spring.framework.version}</version>
+	        </dependency>
+		    <dependency>
+		    	<groupId>org.springframework</groupId>
+		        <artifactId>spring-beans</artifactId>
+		        <version>${spring.framework.version}</version>
+		    </dependency>
 			
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
+			</dependency>
+			
+			<!-- mysql-connector-java5.1.34包经过安全测试存在安全漏洞，升级到5.1.39 -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.39</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.3.2</version>
+			</dependency>
+			
+			
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>2.2.4-1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>2.2.3</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.1.41</version>
 			</dependency>
 			
 		</dependencies>

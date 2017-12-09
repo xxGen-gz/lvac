@@ -12,6 +12,9 @@
 
 package com.xxgen.lvac.core.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Date;
 
 /** 
  * @ClassName InitTest 
@@ -29,8 +32,18 @@ public class InitTest {
 	 *
 	 * @param args 
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		System.out.println("Hello world!");
+		try {
+            Date dd = new Date();
+            System.out.println(dd.getTime());
+            Connection conn = null; //定义一个MYSQL链接对象
+            Class.forName("com.mysql.jdbc.Driver").newInstance(); //MYSQL驱动
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lvac_db", "root", "123456"); //链接本地MYSQL
+            System.out.println("yes");
+        } catch (Exception ex) {
+            System.err.println("MYSQL ERROR:" + ex.getMessage());
+        }
 	}
 
 }

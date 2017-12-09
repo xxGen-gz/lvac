@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.xxgen.lvac.core.dao.category.ICategoryDAO">
+	<resultMap id="category" type="com.xxgen.lvac.core.model.category.Category">
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+	</resultMap>
+	 
+	<select id="count" resultType="int">
+        SELECT COUNT(*) FROM category 
+    </select> 
+	
+    <select id="list" resultMap="category">
+        SELECT * FROM category 
+    </select>
+</mapper>
