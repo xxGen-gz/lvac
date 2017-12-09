@@ -39,6 +39,7 @@ public class ICategoryDAOTest {
 	@Test
     public void countTest() {
 		int count = -1;
+		
 		try {
 			count = categoryDAO.count();
 		}
